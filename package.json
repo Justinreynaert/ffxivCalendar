@@ -8,9 +8,6 @@
   },
   "author": "",
   "license": "ISC",
-  "scripts": {
-    "start": "npm start"
-  },
   "dependencies": {
     "express": "^4.16.2"
   }
