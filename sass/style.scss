@@ -1,0 +1,54 @@
+@import 'partials/normalise';
+@import 'variables/colors';
+
+body {
+  background-color: $blue;
+  font-size: 16px;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+header {
+  nav {
+    background-color: $pink;
+    & > ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      li {
+        display: inline;
+        a {
+          display: inline-block;
+          color: $blue;
+          text-decoration: none;
+            padding: 0.3rem 1rem;
+        }
+      }
+    }
+  }
+}
+
+main {
+  section {
+    &.col2 {
+      box-sizing: border-box;
+      width:50%;
+      background-color: orange;
+      float: left;
+      height: 500px;
+
+      &.peepz {
+        background-color: yellow;
+      }
+
+      &.date {
+        background-color: green;
+      }
+    }
+
+
+  }
+}
