@@ -10,7 +10,7 @@
   "license": "ISC",
   "scripts": {
     "start": "heroku local web"
-  }
+  },
   "dependencies": {
     "express": "^4.16.2"
   }
