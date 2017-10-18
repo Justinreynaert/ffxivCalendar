@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "start": "heroku local web"
+    "start": "npm start"
   },
   "dependencies": {
     "express": "^4.16.2"
