@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -24,7 +25,7 @@ app.use(bodyParser.urlencoded({
   extended:true
 }));
 
-app.use(express.static(__dirname))
+app.use(express.static(path.join(__dirname))
 //routes
 app.use('/dates',dates);
 
@@ -33,7 +34,7 @@ app.use('/dates',dates);
 
 
 app.get('*', function (req, res) {
-  res.sendFile(__dirname + "/index.html");
+  res.sendFile(path.join(__dirname + "/index.html"));
 });
 
 app.listen(process.env.PORT || port, function() {
