@@ -13,6 +13,9 @@ router.post('/addDate', (req,res,next) => {
 
   let newDate = new Dates({
      date: JSON.stringify(Date.now()),
+     available: ["punchies"],
+     tentative: ["baba"],
+     unavailable: ["myrrh"]
   });
 
   Dates.addDate(newDate, (err, date) => {
