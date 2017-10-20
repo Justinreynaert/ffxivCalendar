@@ -93,9 +93,9 @@ module.exports.setAvailibility = function(date, callback) {
         data.save();
         break;
     }
+    
+    callback(err, data);
   });
-
-  Dates.findByDate(date, callback);
 }
 
 function hasMatch(JsonData, checkVal) {
