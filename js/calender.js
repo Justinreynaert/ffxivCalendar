@@ -37,7 +37,7 @@ function clearActive(id) {
 
 function loadActive(dateId, container) {
   console.log(dateId)
-  fetch("https://calendnyan.herokuapp.com/dates/getDates" + dateId)
+  fetch("https://calendnyan.herokuapp.com/dates/getDates/" + dateId)
     .then((resp) => resp.json())
     .then(function(data) {
       console.log(data);
