@@ -3,7 +3,7 @@ window.onload = function() {
   const datePicker = document.getElementById("datePicker");
 
   //make Datepicker
-  fetch("http://localhost:5000/dates/getDates")
+  fetch("https://calendnyan.herokuapp.com/dates/getDates")
     .then((resp) => resp.json())
     .then(function(data) {
       makeDatePicker(data);
@@ -37,7 +37,7 @@ function clearActive(id) {
 
 function loadActive(dateId, container) {
   console.log(dateId)
-  fetch("http://localhost:5000/dates/getDates/" + dateId)
+  fetch("https://calendnyan.herokuapp.com/dates/getDates" + dateId)
     .then((resp) => resp.json())
     .then(function(data) {
       console.log(data);
