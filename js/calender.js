@@ -14,7 +14,7 @@ window.onload = function() {
     .then((resp) => resp.json())
     .then(function(data) {
       makeDatePicker(data);
-      loadActive(datePicker.value, dataView);
+      loadCurrent();
     })
     .catch(() => {
 
@@ -36,8 +36,9 @@ window.onload = function() {
   });
 
   btnRemoveDate.addEventListener("click", function(e) {
-
-    removeDate(datePicker.value);
+    if (datePicker.value) {
+      removeDate(datePicker.value);
+    }
   })
 }
 
@@ -100,8 +101,6 @@ function getDateData() {
   let inputs = eCont.getElementsByTagName("input");
   let date = {};
   for (let i = 0; i < inputs.length; i++) {
-    console.dir(inputs[i]);
-    console.log(inputs.name);
     date[inputs[i].name] = inputs[i].value;
   }
 
@@ -118,14 +117,15 @@ function handleRadClick(radioBut) {
   //
 
   var currentDate = datePicker.value;
+  if (datePicker.value) {
 
-  let userData = {
-    "name":currentUser,
-    "date":currentDate,
-    "availability":radioBut.value
+    let userData = {
+      "name":currentUser,
+      "date":currentDate,
+      "availability":radioBut.value
+    }
+    setAvailibility(userData);
   }
-
-  setAvailibility(userData);
 
 }
 
@@ -140,6 +140,9 @@ function addDate(date) {
       let index = select.children.length + 1;
       makeOption(date,index,select);
       select.selectedIndex = index-1;
+    })
+    .then(function() {
+      loadCurrent();
     })
     .catch(() => {
     })
@@ -157,14 +160,19 @@ function removeDate(date) {
         let select = document.getElementById('datePicker');
         let currentChild = select.selectedIndex + 1;
         select.removeChild(select.childNodes[currentChild])
+
+
       }
+    })
+    .then(function() {
+      loadCurrent();
     })
     .catch(() => {
     })
 }
 
-function loadActive(dateId, container) {
-  fetch("http://localhost:5000/dates/getDates/" + dateId)
+function loadActive(date, container) {
+  fetch("http://localhost:5000/dates/getDates/" + date)
     .then((resp) => resp.json())
     .then(function(data) {
       for (property in data) {
@@ -191,7 +199,7 @@ function setAvailibility(availData) {
   })
     .then((resp) => resp.json())
     .then(function(data) {
-
+      console.log("availData", availData);
       moveLi(availData);
 
 
@@ -206,9 +214,15 @@ function capitalizeFirstLetter(string) {
 
 function moveLi(userData) {
   let currentUl = getCurrentUl(user.name);
-  console.log("UL now " + currentUl);
-  var ulName = revertAvailabilty(userData.availability);
-  console.log("Move to " + ulName);
+
+  console.log(currentUl);
+
+  if (currentUl.found == "yes") {
+    currentUl.li.parentNode.removeChild(currentUl.li)
+  }
+
+  var ulName = document.getElementById(revertAvailabilty(userData.availability));
+  ulName.appendChild(currentUl.li);
 }
 
 function revertAvailabilty(number) {
@@ -232,9 +246,38 @@ function getCurrentUl(username) {
   for (let i = 0; i < allUls.length; i++) {
     for (let x = 0; x < allUls[i].children.length; x ++) {
       if (allUls[i].children[x].innerText == username) {
-        return allUls[i].id;
+        var object = {
+          found: "yes",
+          li: allUls[i].children[x]
+        }
+        return  object;
       }
 
     }
+  }
+
+   var eLi = document.createElement("li");
+  eLi.innerText = username;
+
+  var object = {
+    found: "no",
+    li: eLi
+  }
+  return object;
+}
+
+function loadCurrent() {
+  let select = document.getElementById('datePicker')
+  clearActive("dataView");
+  unCheckBoxes();
+  loadActive(datePicker.value, dataView);
+}
+
+function unCheckBoxes(){
+  let avail = document.getElementById("availability");
+  var inputs = avail.getElementsByTagName("input");
+
+  for (let i = 0; i < inputs.length; i++) {
+    inputs[i].checked = false;
   }
 }
