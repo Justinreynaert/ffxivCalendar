@@ -15,9 +15,9 @@ const DatesSchema = mongoose.Schema({
   }],
   tentative: [{
     type: String
-  }],
-  versionKey: false
-});
+  }]
+
+},{ versionKey: false});
 
 const Dates = module.exports = mongoose.model('Dates', DatesSchema);
 
@@ -41,15 +41,13 @@ module.exports.getAllDates = function(res) {
 
 module.exports.findByDate = (date, callback) => {
   Dates.findOne({
-    'date': date.date
+    'date': date
   }, callback);
 }
 
 module.exports.setAvailibility = function(date, callback) {
   /* This code is ugry --- need fixerino */
-
-  Dates.findByDate(date, function(err, data) {
-
+  Dates.findByDate(date.date, function(err, data) {
 
     let existing = hasMatch(data, date.name);
 
@@ -93,12 +91,13 @@ module.exports.setAvailibility = function(date, callback) {
         data.save();
         break;
     }
-    
+
     callback(err, data);
   });
 }
 
 function hasMatch(JsonData, checkVal) {
+
   // check available
   for (let i = 0; i < JsonData.available.length; i++) {
     if (checkVal == JsonData.available[i]) {

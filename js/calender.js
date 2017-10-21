@@ -1,68 +1,29 @@
-testData = {
-  "dates": {
-    "1": {
-      "available": [
-        "baba", "punch", "lu", "Myrrh"
-      ],
-      "unavailable": [
-        "lei", "zee"
-      ],
-      "tentative": ["gul"]
-    },
-
-    "2": {
-      "available": [
-        "punch", "baba", "lu", "Myrrh"
-      ],
-      "unavailable": [
-        "lei", "zee"
-      ],
-      "tentative": ["gul"]
-    },
-
-    "3": {
-      "available": [
-        "myrrh", "baba", "punch", "lu", "Myrrh"
-      ],
-      "unavailable": [
-        "lei", "zee"
-      ],
-      "tentative": ["gul"]
-    },
-
-    "4": {
-      "available": [
-        "test", "baba", "punch", "lu", "Myrrh"
-      ],
-      "unavailable": [
-        "lei", "zee"
-      ],
-      "tentative": ["gul"]
-    },
-    "5": {
-      "available": [
-        "baba", "punch", "lu", "Myrrh"
-      ],
-      "unavailable": [
-        "lei", "zee"
-      ],
-      "tentative": ["gul"]
-    }
-  }
-}
-
 window.onload = function() {
   const dataView = document.getElementById("dataView");
   const datePicker = document.getElementById("datePicker");
 
-  datePicker.addEventListener("change", function() {
+  //make Datepicker
+  fetch("http://localhost:5000/dates/getDates")
+    .then((resp) => resp.json())
+    .then(function(data) {
+      makeDatePicker(data);
+      loadActive(datePicker.value, dataView);
+    })
+    .catch(() => {
 
+    })
+
+
+
+  datePicker.addEventListener("change", function() {
+    console.log("changed");
     if (dataView.children.length > 0) {
         clearActive(dataView.id);
     }
 
     loadActive(datePicker.value, dataView);
   });
+
 
 }
 
@@ -75,14 +36,24 @@ function clearActive(id) {
 }
 
 function loadActive(dateId, container) {
+  console.log(dateId)
+  fetch("http://localhost:5000/dates/getDates/" + dateId)
+    .then((resp) => resp.json())
+    .then(function(data) {
+      console.log(data);
 
-  let data = testData.dates[dateId];
+      for (property in data) {
+        var place = property;
+        makeUl(property, container);
+        data[place].forEach((element, index, array) => makeLi(element, index, array, property));
+      }
+    })
+    .catch(() => {
 
-  for (property in testData.dates[dateId]) {
-    var place = property;
-    makeUl(property, container);
-    testData.dates[dateId][place].forEach((element, index, array) => makeLi(element, index, array, property));
-  }
+    })
+
+
+
 
 }
 
@@ -101,4 +72,23 @@ function makeLi(element, index, array, property) {
   let eLi = document.createElement("li");
   eLi.innerHTML = element;
   document.getElementById(property).appendChild(eLi);
+}
+
+function makeOption(data, index, select) {;
+  let eOption = document.createElement("option");
+  eOption.value = data;
+  eOption.name = "date" + index;
+  eOption.id = "date" + index;
+  eOption.innerText = data;
+  select.appendChild(eOption);
+}
+
+function makeDatePicker(data) {
+
+  let select = document.getElementById('datePicker');
+
+  for (let i = 0; i < data.length; i++) {
+    console.log(data[i]);
+    makeOption(data[i].date, i, select);
+  }
 }

@@ -51,4 +51,15 @@ router.get('/getDates', (req, res, next) => {
   Dates.getAllDates(res);
 });
 
+router.get('/getDates/:date', function(req,res,next) {
+  Dates.findByDate(req.params.date, function(err, data) {
+    if(!err) {
+      console.log(data);
+      console.log(data.available);
+      res.json({"available": data.available, "tentative": data.tentative, "unavailable": data.unavailable});
+      //res.json(data);
+    }
+  })
+})
+
 module.exports = router;
