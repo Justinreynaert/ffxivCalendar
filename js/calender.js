@@ -23,7 +23,6 @@ window.onload = function() {
 
 
   datePicker.addEventListener("change", function() {
-    console.log("changed");
     if (dataView.children.length > 0) {
         clearActive(dataView.id);
     }
@@ -154,7 +153,6 @@ function removeDate(date) {
   })
     .then((resp) => resp.json())
     .then(function(data) {
-      console.log(data)
 
       if (data.succes == true) {
         let select = document.getElementById('datePicker');
@@ -199,10 +197,7 @@ function setAvailibility(availData) {
   })
     .then((resp) => resp.json())
     .then(function(data) {
-      console.log("availData", availData);
       moveLi(availData);
-
-
     })
     .catch(() => {
     })
@@ -214,8 +209,6 @@ function capitalizeFirstLetter(string) {
 
 function moveLi(userData) {
   let currentUl = getCurrentUl(user.name);
-
-  console.log(currentUl);
 
   if (currentUl.found == "yes") {
     currentUl.li.parentNode.removeChild(currentUl.li)
