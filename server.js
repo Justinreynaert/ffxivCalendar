@@ -29,10 +29,6 @@ app.use(express.static(path.join(__dirname)));
 //routes
 app.use('/dates',dates);
 
-
-
-
-
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname + "/index.html"));
 });

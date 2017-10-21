@@ -9,24 +9,6 @@ router.get('/', (req,res,next) => {
   res.json("test");
 })
 
-router.post('/addDate', (req,res,next) => {
-
-  let newDate = new Dates({
-     date: JSON.stringify(Date.now()),
-     available: ["punchies"],
-     tentative: ["baba"],
-     unavailable: ["myrrh"]
-  });
-
-  Dates.addDate(newDate, (err, date) => {
-    if (err) {
-      res.json({succes:false, msg:"fail"});
-    } else {
-      res.json({succes: true, msg:"added"})
-    }
-  })
-})
-
 router.post("/setAvailability", (req,res) => {
 
   let date = {
@@ -35,6 +17,7 @@ router.post("/setAvailability", (req,res) => {
     date: req.body.date
   }
 
+  console.log("date in /setAvail - routes", date)
   Dates.setAvailibility(date, (err,data) => {
     if (err) {
       res.json({succes:false});
@@ -58,6 +41,38 @@ router.get('/getDates/:date', function(req,res,next) {
       console.log(data.available);
       res.json({"available": data.available, "tentative": data.tentative, "unavailable": data.unavailable});
       //res.json(data);
+    }
+  })
+})
+
+router.post('/removeDate/:date', function(req,res,next) {
+  Dates.removeDate(req.params.date, (err, data) => {
+    if (err) {
+      res.json({succes:false, msg:"fail"});
+    } else {
+      console.log(data.result);
+      if (data.result.n > 0 ) {
+        res.json({succes: true, msg: "date removed"})
+      } else {
+        res.json({succes: true, msg: "date not found"})
+      }
+
+    }
+  })
+})
+
+router.post('/addDate/:date', (req,res,next) => {
+  console.log(req.params.date);
+
+  let newDate = new Dates({
+     date: req.params.date
+  });
+
+  Dates.addDate(newDate, (err, date) => {
+    if (err) {
+      res.json({succes:false, msg:"fail"});
+    } else {
+      res.json({succes: true, msg:"added"})
     }
   })
 })

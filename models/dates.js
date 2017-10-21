@@ -26,7 +26,25 @@ module.exports.getDateById = (id, callback) => {
 }
 
 module.exports.addDate = (newDate, callback) => {
-  newDate.save(callback);
+  Dates.findByDate(newDate.date, function(err, data) {
+    if (data !== null) {
+      console.log("not null")
+    } else {
+      console.log("null");
+      newDate.save(callback);
+    }
+  })
+
+}
+
+module.exports.removeDate = (date, callback) => {
+  Dates.remove({ date: date}, function(err, removed) {
+    if (err) return handleError(err);
+
+    callback(err, removed);
+  });
+
+
 }
 
 module.exports.getAllDates = function(res) {
