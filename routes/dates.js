@@ -39,7 +39,7 @@ router.post("/setAvailability", (req,res) => {
     if (err) {
       res.json({succes:false});
     } else {
-      res.json(data);
+      res.json({succes: true, data});
     }
   })
 
