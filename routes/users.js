@@ -32,7 +32,7 @@ router.post('/authenticate', (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
 
-    console.log(req.body);
+    console.log("req body", req.body);
 
     User.getUserByEmail(email, (err, user) => {
         console.log("email", email);
