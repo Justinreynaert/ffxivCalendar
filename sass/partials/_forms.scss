@@ -1,0 +1,64 @@
+button {
+  background-color: $blue;
+  border: 0;
+  padding: 3px 20px;
+  min-width: 50px;
+  border-radius: 20px;
+  color: $white;
+
+  &:hover {
+    color: $blue;
+    cursor: pointer;
+    background-color: lighten($detail, 100);
+    transition: color 1s, background-color 1s;
+  }
+}
+
+select {
+  background-color: lighten($detail, 100);
+  border: 0;
+  padding: 3px 20px;
+  min-width: 50px;
+  border-radius: 20px;
+  color: $blue;
+
+
+  &:hover {
+    color: $white;
+    cursor: pointer;
+    background-color: $blue;
+    transition: color 1s, background-color 1s;
+  }
+
+  &:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+
+  option {
+    background-color: $white;
+    color: $blue;
+    border-radius: 20px;
+    -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  }
+}
+
+input {
+  background-color: $blue;
+  border: 0;
+  padding: 3px 20px;
+  min-width: 50px;
+  border-radius: 20px;
+  color: $white;
+  transition: background-color 2s, color 1s;
+}
+
+input:focus {
+  background-color: white;
+  color: $blue;
+  transition: background-color 2s, color 1s;
+  outline: 0;
+}

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Droid+Sans");
 /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -475,135 +476,213 @@ template {
   display: none;
 }
 
-/* line 4, ../sass/style.scss */
+/* line 1, ../sass/partials/_base.scss */
 body {
   background-color: #101842;
   font-size: 16px;
+  color: white;
+  font-family: "Droid Sans", sans-Serif;
 }
 
-/* line 9, ../sass/style.scss */
+/* line 9, ../sass/partials/_base.scss */
 .container {
   max-width: 960px;
   margin: 0 auto;
   height: auto;
 }
 
-/* line 16, ../sass/style.scss */
+/* line 16, ../sass/partials/_base.scss */
 header nav {
   background-color: pink;
 }
-/* line 18, ../sass/style.scss */
+/* line 18, ../sass/partials/_base.scss */
 header nav > ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-/* line 22, ../sass/style.scss */
+/* line 22, ../sass/partials/_base.scss */
 header nav > ul li {
   display: inline;
 }
-/* line 24, ../sass/style.scss */
+/* line 24, ../sass/partials/_base.scss */
 header nav > ul li a {
   display: inline-block;
   color: #101842;
   text-decoration: none;
   padding: 0.3rem 1rem;
 }
-/* line 34, ../sass/style.scss */
+/* line 34, ../sass/partials/_base.scss */
 header img {
   display: block;
 }
 
-/* line 44, ../sass/style.scss */
+/* line 44, ../sass/partials/_base.scss */
 main section label {
   padding-right: 1rem;
   display: inline-block;
 }
-/* line 49, ../sass/style.scss */
+/* line 49, ../sass/partials/_base.scss */
 main section.col1, main section.col2 {
   padding: 1rem;
 }
-/* line 52, ../sass/style.scss */
+/* line 52, ../sass/partials/_base.scss */
 main section.col1 h1, main section.col2 h1 {
   margin-top: 0;
 }
-/* line 57, ../sass/style.scss */
+/* line 57, ../sass/partials/_base.scss */
+main section.col1 .adminContent h1, main section.col2 .adminContent h1 {
+  margin-top: 1rem;
+}
+/* line 63, ../sass/partials/_base.scss */
 main section.col1 {
   box-sizing: border-box;
   width: 100%;
   float: left;
   height: auto;
 }
-/* line 63, ../sass/style.scss */
+/* line 69, ../sass/partials/_base.scss */
 main section.col1.login {
-  background-color: cyan;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
-/* line 66, ../sass/style.scss */
+/* line 72, ../sass/partials/_base.scss */
 main section.col1.login .inputRow {
   display: block;
   float: left;
 }
-/* line 70, ../sass/style.scss */
+/* line 76, ../sass/partials/_base.scss */
 main section.col1.login .inputRow label, main section.col1.login .inputRow input {
   float: left;
   margin-right: 1rem;
 }
-/* line 79, ../sass/style.scss */
+/* line 85, ../sass/partials/_base.scss */
 main section.col2 {
   box-sizing: border-box;
   width: 50%;
   float: left;
 }
-/* line 85, ../sass/style.scss */
+/* line 91, ../sass/partials/_base.scss */
 main section.col2 #date .input {
   margin-bottom: 1rem;
 }
-/* line 89, ../sass/style.scss */
+/* line 95, ../sass/partials/_base.scss */
 main section.col2 select {
   width: 100%;
 }
-/* line 93, ../sass/style.scss */
-main section.col2.peepz {
-  background-color: yellow;
+/* line 100, ../sass/partials/_base.scss */
+main section.col2.peepz ul {
+  padding: 0;
 }
-/* line 97, ../sass/style.scss */
-main section.col2.date {
-  background-color: green;
+/* line 102, ../sass/partials/_base.scss */
+main section.col2.peepz ul li {
+  display: inline-block;
+  padding: 20px;
+  list-style: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 1rem;
 }
 
-/* line 106, ../sass/style.scss */
+/* line 121, ../sass/partials/_base.scss */
 .clearfix:after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* line 112, ../sass/style.scss */
+/* line 127, ../sass/partials/_base.scss */
 .error {
   background-color: red;
 }
 
-/* line 116, ../sass/style.scss */
+/* line 131, ../sass/partials/_base.scss */
 .errorMsg {
   margin-left: 0.5rem;
   float: left;
 }
 
-/* line 121, ../sass/style.scss */
+/* line 136, ../sass/partials/_base.scss */
 .logout {
   float: right;
 }
-/* line 124, ../sass/style.scss */
+/* line 139, ../sass/partials/_base.scss */
 .logout button {
   margin-left: 1rem;
 }
 
-/* line 129, ../sass/style.scss */
+/* line 144, ../sass/partials/_base.scss */
 #availability {
   display: none;
 }
 
-/* line 133, ../sass/style.scss */
+/* line 148, ../sass/partials/_base.scss */
 .adminContent {
   display: none;
+}
+
+/* line 1, ../sass/partials/_forms.scss */
+button {
+  background-color: #101842;
+  border: 0;
+  padding: 3px 20px;
+  min-width: 50px;
+  border-radius: 20px;
+  color: white;
+}
+/* line 9, ../sass/partials/_forms.scss */
+button:hover {
+  color: #101842;
+  cursor: pointer;
+  background-color: white;
+  transition: color 1s, background-color 1s;
+}
+
+/* line 17, ../sass/partials/_forms.scss */
+select {
+  background-color: white;
+  border: 0;
+  padding: 3px 20px;
+  min-width: 50px;
+  border-radius: 20px;
+  color: #101842;
+}
+/* line 26, ../sass/partials/_forms.scss */
+select:hover {
+  color: white;
+  cursor: pointer;
+  background-color: #101842;
+  transition: color 1s, background-color 1s;
+}
+/* line 33, ../sass/partials/_forms.scss */
+select:focus {
+  outline: 0;
+  box-shadow: none;
+}
+/* line 38, ../sass/partials/_forms.scss */
+select option {
+  background-color: white;
+  color: #101842;
+  border-radius: 20px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* line 49, ../sass/partials/_forms.scss */
+input {
+  background-color: #101842;
+  border: 0;
+  padding: 3px 20px;
+  min-width: 50px;
+  border-radius: 20px;
+  color: white;
+  transition: background-color 2s, color 1s;
+}
+
+/* line 59, ../sass/partials/_forms.scss */
+input:focus {
+  background-color: white;
+  color: #101842;
+  transition: background-color 2s, color 1s;
+  outline: 0;
 }

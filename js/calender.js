@@ -13,7 +13,7 @@ window.onload = function() {
   loggedInCheck();
 
   //make Datepicker
-  fetch("http://localhost:5000/dates/getDates")
+  fetch("https://calendnyan.herokuapp.com/dates/getDates")
   .then((resp) => resp.json())
   .then(function(data) {
     makeDatePicker(data);
@@ -41,6 +41,10 @@ window.onload = function() {
   btnLogin.addEventListener("click", function(e) {
     login();
   })
+
+  btnRegister.addEventListener("click", function(e) {
+    alert("Not implemented yet :)");
+  })
 }
 
 function clearActive(id) {
@@ -54,7 +58,7 @@ function clearActive(id) {
 function makeUl(property, container) {
   // make the title
   let eH1 = document.createElement("h1");
-  eH1.innerHTML = property;
+  eH1.innerHTML = capitalizeFirstLetter(property);
   // make the UL
   let eUl = document.createElement("ul");
   eUl.id = property;
@@ -133,7 +137,7 @@ function handleRadClick(radioBut) {
 
 function addDate(date) {
   // date -- unixdate
-  fetch("http://localhost:5000/dates/addDate/" + date, {
+  fetch("https://calendnyan.herokuapp.com/dates/addDate/" + date, {
     method: "POST",
     headers: {
     'Accept': 'application/json, text/plain, */*',
@@ -150,7 +154,7 @@ function addDate(date) {
 }
 
 function removeDate(date) {
-  fetch("http://localhost:5000/dates/removeDate/" + date, {
+  fetch("https://calendnyan.herokuapp.com/dates/removeDate/" + date, {
     method: "POST",
     headers: {
       'Accept': 'application/json, text/plain, */*',
@@ -174,7 +178,7 @@ function removeDate(date) {
 function loadActive(date, container) {
   unCheckBoxes();
 
-  fetch("http://localhost:5000/dates/getDates/" + date).then((resp) => resp.json()).then(function(data) {
+  fetch("https://calendnyan.herokuapp.com/dates/getDates/" + date).then((resp) => resp.json()).then(function(data) {
     for (property in data) {
       var place = property;
       makeUl(property, container);
@@ -186,7 +190,7 @@ function loadActive(date, container) {
 function setAvailibility(availData) {
   // availdata - data about availibility
 
-  fetch("http://localhost:5000/dates/setAvailability", {
+  fetch("https://calendnyan.herokuapp.com/dates/setAvailability", {
     method: "POST",
     headers: {
       'Accept': 'application/json, text/plain, */*',
@@ -338,7 +342,7 @@ function login() {
 
     console.log(userData);
 
-    fetch("http://localhost:5000/users/authenticate", {
+    fetch("https://calendnyan.herokuapp.com/users/authenticate", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
