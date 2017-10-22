@@ -35,7 +35,7 @@ router.post('/authenticate', (req, res, next) => {
     console.log(req.body);
 
     User.getUserByEmail(email, (err, user) => {
-        console.log(user);
+        console.log("user", user);
         if (err) throw err;
 
         if (!user) {
