@@ -32,8 +32,7 @@ module.exports.getUserById = (id, callback) => {
 
 module.exports.getUserByEmail = (email, callback ) => {
     console.log(email);
-    const query = {email: email};
-    User.findOne(query, callback)
+    User.findOne({email: email}, callback)
 };
 
 module.exports.addUser = (newUser, callback) => {
