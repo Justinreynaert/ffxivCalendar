@@ -31,11 +31,11 @@ module.exports.getUserById = (id, callback) => {
 };
 
 module.exports.getUserByEmail = (email, callback ) => {
-      
+        if (err) {
+                console.log(err);
+        }
     console.log(email);
-    User.findOne({email: email}, if (err) {
-  return console.log("error: " + err);
-})
+    User.findOne({email: email}, callback)
 };
 
 module.exports.addUser = (newUser, callback) => {
