@@ -56,7 +56,7 @@ router.post('/authenticate', (req, res, next) => {
                   password: user.password,
                   type: user.type
               }
-                const token = jwt.sign(payload, config.secret, {
+                const token = jwt.sign(payload, process.env.secret||config.secret, {
                     expiresIn: "7d" // 1week
                 });
 
