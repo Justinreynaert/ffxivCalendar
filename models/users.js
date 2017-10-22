@@ -31,8 +31,9 @@ module.exports.getUserById = (id, callback) => {
 };
 
 module.exports.getUserByEmail = (email, callback ) => {
-    console.log(email);
-    User.findOne({email: email}, callback);
+    console.log("email getUserByEmail", email);
+    let query = {email: email};
+    User.findOne(query, callback);
 };
 
 module.exports.addUser = (newUser, callback) => {
