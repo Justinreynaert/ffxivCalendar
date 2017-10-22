@@ -40,6 +40,7 @@ router.post('/authenticate', (req, res, next) => {
         if (err) throw err;
 
         if (!user) {
+            console.log(err);
             return res.json({success:false, msg: 'user not found'})
         }
 
