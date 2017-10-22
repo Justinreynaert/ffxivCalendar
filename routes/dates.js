@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 
 const config = require('../config/database');
 
@@ -9,8 +10,7 @@ router.get('/', (req,res,next) => {
   res.json("test");
 })
 
-router.post("/setAvailability", (req,res) => {
-
+router.post("/setAvailability", passport.authenticate('jwt', {session:false}), (req,res) => {
   let date = {
     name: req.body.name,
     availability: req.body.availability,
@@ -45,7 +45,7 @@ router.get('/getDates/:date', function(req,res,next) {
   })
 })
 
-router.post('/removeDate/:date', function(req,res,next) {
+router.post('/removeDate/:date', passport.authenticate('jwt', {session:false}), function(req,res,next) {
   Dates.removeDate(req.params.date, (err, data) => {
     if (err) {
       res.json({succes:false, msg:"fail"});
@@ -61,7 +61,7 @@ router.post('/removeDate/:date', function(req,res,next) {
   })
 })
 
-router.post('/addDate/:date', (req,res,next) => {
+router.post('/addDate/:date', passport.authenticate('jwt', {session:false}), (req, res, next) => {
   console.log(req.params.date);
 
   let newDate = new Dates({

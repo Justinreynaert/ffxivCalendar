@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="style/style.css">
 
   <title>CalendNyan</title>
@@ -14,76 +15,93 @@
   <header>
     <div class="container">
       <img src="images/header.png" alt="header image">
-
-      <nav>
-        <ul>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-        </ul>
-      </nav>
     </div>
   </header>
 
   <main>
-    <div class="container">
-      <section class="col2 date">
-        <div id="userContent">
-          <select name="date" id="datePicker">
+
+    <section id="login">
+      <div class="container clearfix">
+        <section class="col1 login" id="loginInnerContent">
+          <div class="inputRow clearfix">
+            <label for="email">Email</label>
+            <input type="text" name="email" class="required">
+          </div>
+          <div class="inputRow clearfix">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="required">
+          </div>
+          <div class="registerButtons">
+            <button id="btnLogin">login</button>
+            <button id="btnRegister">register</button>
+
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="calender" class="clearfix">
+      <div class="container clearfix">
+
+        <section class="col2 date">
+          <div id="userContent">
+            <select name="date" id="datePicker">
         </select>
-        </div>
-
-        <div id="adminContent">
-          <h1>add Date</h1>
-          <div id="date">
-            <div class="input">
-              <label for="day">Day</label>
-              <input type="text" name="day" />
-            </div>
-
-            <div class="input">
-              <label for="month">Month</label>
-              <input type="text" name="month" />
-            </div>
-
-            <div class="input">
-              <label for="year">Year</label>
-              <input type="text" name="year" />
-            </div>
-
-            <div class="input">
-              <label for="hours">HH</label>
-              <input type="text" name="hours" />
-            </div>
-
-            <div class="input">
-              <label for="minutes">MM</label>
-              <input type="text" name="minutes" />
-            </div>
-            <button id="addDate">Add Date</button>
-            <button id="removeDate">Remove Date</button>
           </div>
 
-      </section>
-      <section class="col2 peepz">
-        <div id="dataView"></div>
+          <div class="adminContent">
+            <h1>add Date</h1>
+            <div id="date">
+              <div class="input">
+                <label for="day">Day</label>
+                <input type="text" name="day" />
+              </div>
 
-        <div id="availability">
-          <input type="radio" name="availabilityOption" value="0" onclick="handleRadClick(this)" id="radAvailable">available
-          <input type="radio" name="availabilityOption" value="2" onclick="handleRadClick(this)" id="radTentative">tentative
-          <input type="radio" name="availabilityOption" value="1" onclick="handleRadClick(this)" id="radUnavailable">unavailable
-        </div>
+              <div class="input">
+                <label for="month">Month</label>
+                <input type="text" name="month" />
+              </div>
 
-      </section>
+              <div class="input">
+                <label for="year">Year</label>
+                <input type="text" name="year" />
+              </div>
+
+              <div class="input">
+                <label for="hours">HH</label>
+                <input type="text" name="hours" />
+              </div>
+
+              <div class="input">
+                <label for="minutes">MM</label>
+                <input type="text" name="minutes" />
+              </div>
+
+              <div class="input">
+                <button id="addDate">Add Date</button>
+                <button id="removeDate">Remove Date</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="col2 peepz">
+          <div id="dataView"></div>
+
+          <div id="availability">
+            <input type="radio" name="availabilityOption" value="0" onclick="handleRadClick(this)" id="radAvailable">available
+            <input type="radio" name="availabilityOption" value="2" onclick="handleRadClick(this)" id="radTentative">tentative
+            <input type="radio" name="availabilityOption" value="1" onclick="handleRadClick(this)" id="radUnavailable">unavailable
+          </div>
+
+        </section>
       </div>
+    </section>
   </main>
 
   <footer>
 
   </footer>
-  <script async  src="js/calender.js"></script>
+  <script async src="js/calender.js"></script>
 </body>
 
 </html>

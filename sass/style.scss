@@ -9,6 +9,7 @@ body {
 .container {
   max-width: 960px;
   margin: 0 auto;
+  height: auto;
 }
 
 header {
@@ -29,16 +30,65 @@ header {
       }
     }
   }
+
+  img {
+    display: block;
+  }
 }
 
 main {
+
+
   section {
+
+    label {
+      padding-right: 1rem;
+      display: inline-block;
+    }
+
+    &.col1, &.col2 {
+          padding: 1rem;
+
+          h1 {
+            margin-top: 0;
+          }
+    }
+
+    &.col1 {
+      box-sizing: border-box;
+      width:100%;
+      float: left;
+      height: auto;
+
+      &.login {
+        background-color: cyan;
+
+        .inputRow {
+          display: block;
+          float: left;
+
+          label, input {
+            float: left;
+            margin-right: 1rem;
+          }
+        }
+
+      }
+    }
+
     &.col2 {
       box-sizing: border-box;
       width:50%;
-      background-color: orange;
       float: left;
-      height: 500px;
+
+      #date {
+        .input {
+          margin-bottom: 1rem;
+        }
+      }
+      select {
+        width: 100%;
+      }
 
       &.peepz {
         background-color: yellow;
@@ -51,4 +101,35 @@ main {
 
 
   }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.error {
+  background-color: $red;
+}
+
+.errorMsg {
+  margin-left: 0.5rem;
+  float: left;
+}
+
+.logout {
+  float: right;
+
+  button {
+    margin-left: 1rem;
+  }
+}
+
+#availability {
+  display: none;
+}
+
+.adminContent {
+  display: none;
 }
