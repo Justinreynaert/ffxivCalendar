@@ -37,10 +37,10 @@ router.post('/authenticate', (req, res, next) => {
     User.getUserByEmail(email, (err, user) => {
         console.log("email", email);
         console.log("user", user);
-        if (err) throw err;
-
+        if (err) {
+           console.log(err);
+         }
         if (!user) {
-            console.log(err);
             return res.json({success:false, msg: 'user not found'})
         }
 
