@@ -32,7 +32,7 @@ module.exports.getUserById = (id, callback) => {
 
 module.exports.getUserByEmail = (email, callback ) => {
     console.log(email);
-    User.find({email: email}, callback);
+    User.findOne({email: email}, callback);
 };
 
 module.exports.addUser = (newUser, callback) => {
