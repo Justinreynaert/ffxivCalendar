@@ -12,7 +12,7 @@ const User = require('../models/users');
 router.post('/register', (req, res, next) => {
     let newUser = new User({
         name: req.body.name,
-        email: req.body.email,
+        email: req.body.email.toLowerCase(),
         password: req.body.password,
         type: "user"
     });
@@ -29,7 +29,8 @@ router.post('/register', (req, res, next) => {
 
 //authentice
 router.post('/authenticate', (req, res, next) => {
-    const email = req.body.email;
+    let email = req.body.email;
+    email = email.toLowerCase();
     const password = req.body.password;
 
     console.log("req body", req.body);

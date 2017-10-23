@@ -15,7 +15,7 @@ const port = 5000;
 mongoose.connect(process.env.database || config.database);
 
 mongoose.connection.on('connected', () => {
-  console.log('Connected to db ' + process.env.database || config.database);
+  console.log('Connected to db ', process.env.database || config.database);
 })
 
 const dates = require('./routes/dates');
