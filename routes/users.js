@@ -11,9 +11,9 @@ const User = require('../models/users');
 //register
 router.post('/register', (req, res, next) => {
     let newUser = new User({
-        name: req.body.name,
-        email: req.body.email.toLowerCase(),
-        password: req.body.password,
+        name: req.body.regname,
+        email: req.body.regemail.toLowerCase(),
+        password: req.body.regpassword,
         type: "user"
     });
 

@@ -3,7 +3,6 @@ body {
   font-size: 16px;
   color: $fontColor;
   font-family: $droid;
-
 }
 
 .container {
@@ -15,17 +14,20 @@ body {
 header {
   nav {
     background-color: $pink;
+
     & > ul {
       margin: 0;
       padding: 0;
       list-style: none;
+
       li {
         display: inline;
+
         a {
           display: inline-block;
           color: $blue;
           text-decoration: none;
-            padding: 0.3rem 1rem;
+          padding: 0.3rem 1rem;
         }
       }
     }
@@ -37,54 +39,58 @@ header {
 }
 
 main {
-
-
   section {
-
     label {
       padding-right: 1rem;
       display: inline-block;
     }
 
-    &.col1, &.col2 {
-          padding: 1rem;
+    &.col1,
+    &.col2 {
+      padding: 1rem;
 
-          h1 {
-            margin-top: 0;
-          }
+      h1 {
+        margin-top: 0;
+      }
 
-          .adminContent {
-            h1 {
-              margin-top: 1rem;
-            }
-          }
+      .adminContent {
+        h1 {
+          margin-top: 1rem;
+        }
+      }
     }
 
     &.col1 {
       box-sizing: border-box;
-      width:100%;
+      width: 100%;
       float: left;
       height: auto;
 
       &.login {
         background-color: rgba(255, 255, 255, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.15);
+
         .inputRow {
           display: block;
           float: left;
 
-          label, input {
+          input,
+          label {
             float: left;
             margin-right: 1rem;
           }
         }
+      }
 
+      &.register {
+        background-color: rgba(255, 255, 255, 0.1);
+        display: none;
       }
     }
 
     &.col2 {
       box-sizing: border-box;
-      width:50%;
+      width: 50%;
       float: left;
 
       #date {
@@ -92,6 +98,7 @@ main {
           margin-bottom: 1rem;
         }
       }
+
       select {
         width: 100%;
       }
@@ -99,6 +106,7 @@ main {
       &.peepz {
         ul {
           padding: 0;
+
           li {
             display: inline-block;
             padding: 20px;
@@ -109,12 +117,8 @@ main {
         }
       }
 
-      &.date {
-
-      }
+      &.date {}
     }
-
-
   }
 }
 
@@ -133,6 +137,14 @@ main {
   float: left;
 }
 
+#register {
+  .errorMsg {
+    color: $red;
+    margin-left: 0.5rem;
+    float: right;
+  }
+}
+
 .logout {
   float: right;
 
@@ -146,5 +158,9 @@ main {
 }
 
 .adminContent {
+  display: none;
+}
+
+.hidden {
   display: none;
 }

@@ -25,11 +25,11 @@
         <section class="col1 login" id="loginInnerContent">
           <div class="inputRow clearfix">
             <label for="email">Email</label>
-            <input type="text" name="email" class="required">
+            <input type="text" name="email" class="required" id="loginemail">
           </div>
           <div class="inputRow clearfix">
             <label for="password">Password</label>
-            <input type="password" name="password" class="required">
+            <input type="password" name="password" class="required" id="loginpw">
           </div>
           <div class="registerButtons">
             <button id="btnLogin">Login</button>
@@ -39,6 +39,28 @@
         </section>
       </div>
     </section>
+
+
+    <section id="register">
+      <div class="container clearfix">
+        <section class="col1 register" id="registerInnerContent">
+        <div>
+          <label for="regemail">Email</label>
+          <input type="text" name="regemail" class="required">
+        </div>
+        <div>
+          <label for="regname">Name</label>
+          <input type="text" name="regname" class="required">
+        </div>
+        <div>
+          <label for="regpassword">Password</label>
+          <input type="password" name="regpassword" class="required">
+        </div>
+        <button id="btnSubmit" onClick="regSubmit()">submit</button>
+      </section>
+      </div>
+    </section>
+
 
     <section id="calender" class="clearfix">
       <div class="container clearfix">
@@ -101,6 +123,8 @@
   <footer>
 
   </footer>
+
+
   <script async src="js/calender.js"></script>
 </body>
 

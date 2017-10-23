@@ -43,7 +43,7 @@ window.onload = function() {
   })
 
   btnRegister.addEventListener("click", function(e) {
-    alert("Not implemented yet :)");
+    register();
   })
 }
 
@@ -98,6 +98,8 @@ function makeDatePicker(data) {
 function makeUTCdate(timestamp) {
   let d = new Date(0);
   d.setUTCSeconds(timestamp);
+  d = d.toString();
+  d = d.split(' ').splice(0, 5).join(' ')
   return d;
 }
 
@@ -179,6 +181,11 @@ function loadActive(date, container) {
   unCheckBoxes();
 
   fetch("https://calendnyan.herokuapp.com/dates/getDates/" + date).then((resp) => resp.json()).then(function(data) {
+    var eTitle = document.createElement("h2");
+    var formattedDate = makeUTCdate(date);
+    eTitle.innerText = formattedDate;
+    container.appendChild(eTitle);
+
     for (property in data) {
       var place = property;
       makeUl(property, container);
@@ -473,5 +480,114 @@ function checkType() {
     default:
       let availability = document.getElementById("availability");
       availability.style.display = "block";
+  }
+}
+
+function register() {
+  /* show the login form */
+  let regWindow = document.getElementById("registerInnerContent");
+  regWindow.style.display = "block";
+}
+
+function regSubmit() {
+  var registerSection = document.getElementById("register");
+
+  var loginSection = document.getElementById("login");
+
+  clearErrorMsgs(registerSection);
+
+  var inputs = registerSection.getElementsByTagName("input");
+
+  var mistakes = {
+    count: 0
+  };
+
+
+  // check for input if required
+  for (let i = 0; i < inputs.length; i++) {
+
+    inputs[i].classList.remove("error");
+
+
+    if (inputs[i].value.length == 0) {
+      inputs[i].classList.add("error");
+      mistakes.count ++;
+      console.log(mistakes.count);
+
+      mistakes[inputs[i].name] = {
+        error: "missing input",
+        msg: "missing input",
+        input: inputs[i]
+      }
+    }
+  }
+
+  for (let i = 0; i < inputs.length; i++) {
+  if (!mistakes[inputs[i].name]) {
+    switch (inputs[i].name) {
+      case "regemail":
+        if (!validateEmail(inputs[i].value)) {
+          mistakes[inputs[i].name] = {
+            error: "formatting",
+            msg: "not a valid emailadress - check the formatting",
+            input: inputs[i]
+          }
+          inputs[i].classList.add("error");
+          mistakes.count ++;
+        }
+        break;
+      }
+    }
+  }
+
+  if (mistakes.count == 0) {
+    let userData = {};
+    for (let i = 0; i < inputs.length; i++) {
+        userData[inputs[i].name] = inputs[i].value;
+    }
+    userData.regemail = userData.regemail.toLowerCase();
+
+    fetch("https://calendnyan.herokuapp.com/users/register", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+
+      body: JSON.stringify(userData)
+
+    })
+    .then((resp) => resp.json())
+    .then(function(data){
+      console.log(data);
+
+      if (data.success) {
+        alert("registered, you can log in now.");
+
+        let regWindow = document.getElementById("registerInnerContent");
+        regWindow.style.display = "none";
+
+
+      } else {
+        alert(data.msg);
+
+      }
+    })
+    .catch(() => {})
+
+  } else {
+    // Make all the wrong shit appear
+    clearErrorMsgs(loginSection);
+
+    console.log("generating");
+    for (key in mistakes) {
+      if (key !== "count") {
+        var obj = mistakes[key];
+
+        var input = obj.input;
+        makeMsg(input.parentNode, obj.msg)
+      }
+    }
+
   }
 }
