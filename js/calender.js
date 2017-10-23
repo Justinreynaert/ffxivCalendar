@@ -67,7 +67,6 @@ function makeUl(property, container) {
 }
 
 function makeLi(element, index, array, property) {
-  console.log("el", element);
   if (element.toLowerCase() == user.name) {
     document.getElementById("rad" + capitalizeFirstLetter(property)).checked = true;
   }
@@ -307,7 +306,6 @@ function login() {
     if (inputs[i].value.length == 0) {
       inputs[i].classList.add("error");
       mistakes.count ++;
-      console.log(mistakes.count);
 
       mistakes[inputs[i].name] = {
         error: "missing input",
@@ -347,8 +345,6 @@ function login() {
 
     userData.email = userData.email.toLowerCase();
 
-    console.log(userData);
-
     fetch("https://calendnyan.herokuapp.com/users/authenticate", {
       method: "POST",
       headers: {
@@ -361,9 +357,6 @@ function login() {
     .then(function(data) {
       if(data.success) {
         // goodshit, we are. Save token and user info.
-        console.log(data);
-        console.log(data.user);
-        console.log(data.token);
         localStorage.setItem('token', JSON.stringify(data.token));
         localStorage.setItem('userInfo', JSON.stringify(data.user));
 
@@ -380,7 +373,6 @@ function login() {
     // Make all the wrong shit appear
     clearErrorMsgs(loginSection);
 
-    console.log("generating");
     for (key in mistakes) {
       if (key !== "count") {
         var obj = mistakes[key];
@@ -412,9 +404,7 @@ function makeMsg(target, message) {
 
 function clearErrorMsgs(location) {
   let allErrorMsgs = location.getElementsByClassName("errorMsg");
-  console.log("allErrorMsgs", allErrorMsgs.length );
   for (let i = 0; i < allErrorMsgs.length; i ++) {
-    console.log("this ", allErrorMsgs[i]);
     allErrorMsgs[i].parentNode.removeChild(allErrorMsgs[i]);
   }
 }
@@ -423,7 +413,6 @@ function loggedInCheck() {
   if(localStorage.getItem("token")) {
     window.token = localStorage.getItem("token");
     let userInfo = JSON.parse(localStorage.getItem("userInfo"));
-    console.log(userInfo);
     user = userInfo;
 
     changeState();
@@ -459,7 +448,6 @@ function createLogout(container) {
 }
 
 function logout() {
-  console.log("logging out");
   localStorage.removeItem("token");
   localStorage.removeItem("userInfo");
   user = {};
@@ -468,8 +456,6 @@ function logout() {
 }
 
 function checkType() {
-  console.log(user.type);
-
   switch (user.type) {
     case "admin":
       let adminContent = document.getElementsByClassName("adminContent");
@@ -512,7 +498,6 @@ function regSubmit() {
     if (inputs[i].value.length == 0) {
       inputs[i].classList.add("error");
       mistakes.count ++;
-      console.log(mistakes.count);
 
       mistakes[inputs[i].name] = {
         error: "missing input",
@@ -559,8 +544,6 @@ function regSubmit() {
     })
     .then((resp) => resp.json())
     .then(function(data){
-      console.log(data);
-
       if (data.success) {
         alert("registered, you can log in now.");
 
@@ -579,7 +562,6 @@ function regSubmit() {
     // Make all the wrong shit appear
     clearErrorMsgs(loginSection);
 
-    console.log("generating");
     for (key in mistakes) {
       if (key !== "count") {
         var obj = mistakes[key];
