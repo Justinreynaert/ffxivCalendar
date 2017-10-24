@@ -48,7 +48,7 @@ module.exports.removeDate = (date, callback) => {
 }
 
 module.exports.getAllDates = function(res) {
-  Dates.find({sort: {date: -1}}(err, dates) => {
+  Dates.find({}, null, {sort: {date: 1}},(err, dates) => {
     if (!err) {
       res.json(dates)
     } else {
